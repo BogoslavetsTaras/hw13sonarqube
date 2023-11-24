@@ -1,0 +1,44 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+
+    - name: Grant execute permission to mvnw
+      run: chmod +x mvnw
+
+    - name: Install dependencies and build project
+      run: |
+        ./mvnw clean package
+        
+    - name: Run unit tests
+      run: |
+        # Команди для виконання модульних тестів
+        # Додайте команди для виконання тестів вашого проекту
+
+  manual_trigger:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
+    - name: Manual trigger
+      run: echo "This job was manually started!"
