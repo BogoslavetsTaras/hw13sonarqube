@@ -97,11 +97,12 @@
         </dependency>
     </dependencies>
 
-    <build>
-	
-	    <finalName>${project.artifactId}</finalName>
-		
-		    <plugin>
+   <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <plugins>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.1</version>
@@ -161,6 +162,7 @@
                 <version>3.9.1.2184</version>
             </plugin>
 
+        </plugins>
     </build>
 
 </project>
